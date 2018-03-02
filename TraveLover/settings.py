@@ -108,6 +108,17 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql', 
+#         'NAME': 'traveldiaries',
+#         'USER': 'traveldiaries',
+#         'PASSWORD': 'password',
+#         'HOST': 'traveldiaries.ccmuraztpbrk.us-east-2.rds.amazonaws.com',   # Or an IP Address that your DB is hosted on
+#         'PORT': '3306',
+#     }
+# }
+
 NEO4J_DATABASES = {
     'default' : {
         'HOST':'localhost',

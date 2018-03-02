@@ -23,7 +23,7 @@ def create_todo_node(sender, instance, **kwargs):
     """
     Creates the todo node on the graph database.
     """
-   
+    
     if instance is not None:
         #graph = Graph('http://localhost:7474/db/data')
         #graph = Graph("http://neo4j:password@localhost:7474")
@@ -33,7 +33,7 @@ def create_todo_node(sender, instance, **kwargs):
         query = '''
         CREATE (n:Todo { title : {title}, description : {description}})
         '''
-   
+    
         ## now execute the query
         graph.run(query, title=instance.title,
                 description=instance.description
