@@ -1,8 +1,4 @@
-from django.shortcuts import render
-
 # Create your views here.
-from rest_framework import generics
-from . import serializers
 
 from django.http import Http404
 
@@ -10,8 +6,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-from travel.models import Todo
-from travel.serializers import TodoSerializer
+from .UserModel import Todo
+from .UserSerializers import TodoSerializer
 
 # For /todo/ --> Kind of URL
 # Post Request
@@ -21,7 +17,7 @@ class TodoList(APIView):
     '''
     def post(self, request, format=None):
         todos = Todo.objects.all()
-        serializer = serializers.TodoSerializer(todos, many=True)
+        serializer = TodoSerializer(todos, many=True)
         return Response(serializer.data)
     
 # For /todo/addTodo/ --> Kind of URL
@@ -29,7 +25,7 @@ class TodoList(APIView):
 class AddTodo(APIView):
     
     def post(self, request, format=None):
-        serializer = serializers.TodoSerializer(data=request.data)
+        serializer = TodoSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
