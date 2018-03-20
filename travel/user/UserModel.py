@@ -4,13 +4,13 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from py2neo import Graph,authenticate
-
+from django.db.models import Q
 
 # Create your models here.
 class Todo(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
-
+    is_active = models.IntegerField(default=1,null=False)
     def __str__(self):
         """A string representation of the model."""
         return self.title
