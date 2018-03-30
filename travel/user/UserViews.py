@@ -16,7 +16,7 @@ class TodoList(APIView):
         If the below post method changed to get it will become get request (just change the keyword post-->get)
     '''
     def post(self, request, format=None):
-        todos = Todo.objects.all()
+        todos = Todo.objects.filter(is_active=1)
         serializer = TodoSerializer(todos, many=True)
         return Response(serializer.data)
     
@@ -40,7 +40,7 @@ class TodoDetail(APIView):
 
     def get_object(self, pk):
         try:
-            return Todo.objects.get(pk=pk)
+            return Todo.objects.get(pk=pk,is_active=1)
         except Todo.DoesNotExist:
             raise Http404
 
